@@ -1,0 +1,12 @@
+<% layout('layout/boilerplate') -%>
+    <form method="post" action="/listings">
+        <h3>Fill your preferences</h3> <br>
+        Title:<input name="listing[title]" type="text" placeholder="<%=listing.title%>"> <br> <br>
+        Description:<textarea cols=40 rows=10 name="listing[description]" placeholder="<%=listing.description%>"></textarea></textarea> <br> <br>
+        Price:<input type="number" name="listing[price]" placeholder="<%=listing.price%>"> <br> <br>
+        Image:<input type="text" name="listing[image]" placeholder="<%=listing.image%>"> <br>
+        Location:<input type="text" name="listing[location]" placeholder="<%=listing.location%>"> <br> <br>
+        Country:<input type="text" name="listing[country]" placeholder="<%=listing.country%>"> <br> <br>
+        <button>Submit</button>
+    </form>
+</body>

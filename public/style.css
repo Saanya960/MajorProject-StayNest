@@ -1,0 +1,32 @@
+li {
+    background-color: antiquewhite;
+}
+
+.fa-compass {
+    color:#FF385C;
+    font-size: larger;
+}
+
+.nav-link {
+    color: #222222   !important ;} 
+  
+    
+.navbar {
+        background-color: #FFFFFF;
+    }
+.foot-info a {
+        text-decoration: none;
+        color: gray;
+}
+
+.foot-info a:hover {
+    color:#222222;
+    text-decoration: 2px solid black;
+} 
+.card-text a{
+    text-decoration: none;
+    color:#222222;
+}
+.card-text {
+    padding: 20px 15px;
+}

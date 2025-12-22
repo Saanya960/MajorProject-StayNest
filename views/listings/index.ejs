@@ -1,0 +1,15 @@
+<% layout('layout/boilerplate') -%>
+<body>
+    <h3>All Listings</h3>
+    <ul>
+        <% for (listing of allListings) { %>
+            <div class="card" style="width: 18rem;">
+  <img src="<%=listing.image%>" class="card-img-top" alt="listings">
+  <div class="card-body">
+    <p class="card-text">   <a  href="/listings/<%=listing._id%>"><%= listing.title %></a> </p>
+  </div>
+</div> 
+            <% } %>
+    </ul>
+    
+</body>
