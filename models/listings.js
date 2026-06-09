@@ -8,10 +8,10 @@ const listingSchema = new Schema({
         required:true,
     },
     description:String,
-    default:"villa.jpg", //as a testing purpose
     image:{
-        type:String,
-        set : (v) => v===""? "villa.jpg" : v,
+        filename:{ type : String},
+        url:{type : String,
+        set : (v) => v===""? "villa.jpg" : v},
     },
     price:Number,
     location:String,
