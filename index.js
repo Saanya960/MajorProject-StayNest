@@ -4,6 +4,7 @@ const mongoose=require("mongoose");
 const ejs=require("ejs");
 const Listing = require('./models/listings.js');
 const path = require('path');
+const methodOverride = require('method-override');
 
 async function main() {
     await mongoose.connect("mongodb://127.0.0.1/stayNest")
@@ -17,6 +18,7 @@ console.log("MONGODB Connected")
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({extended : true}));
+app.use(methodOverride("_method"));
 
 app.listen(8080,() => {
     console.log("app is working")
@@ -51,3 +53,22 @@ app.get('/listings/:id', async (req,res) => {
     res.render('listings/show.ejs',{listing});
 })
 
+//Edit Route
+app.get('/listings/:id/edit' , async (req,res) => {
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    res.render('listings/edit.ejs' , {listing});
+})
+
+//Update Route
+app.put('/listings/:id' , async (req,res) => {
+    let {id} = req.params;
+    await Listing.findByIdAndUpdate(id , {...req.body.listing})
+    res.redirect(`/listings/${id}`);
+})
+
+app.delete('/listings/:id' , async (req,res) => {
+    let {id} = req.params;
+   await Listing.findByIdAndDelete(id);
+   res.redirect('/listings');
+})
