@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate.ejs') -%>
-<h2>StayNest</h2>
+
 <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
     Title:<input type="text" name="listing[title]" value="<%= listing.title %>" > <br>
     Description:<textarea name="listing[description]"><%= listing.description %></textarea> <br>

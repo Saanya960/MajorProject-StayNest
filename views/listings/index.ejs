@@ -3,9 +3,21 @@
 <form action="/listings/new">
     <button>Create New Listing</button>
 </form>
-<ul>
-<% for(let listing of allListings) { %>
-    <li><a href="/listings/<%= listing._id %>"><%=listing.title %></a></li>
-
-<% } %>
-</ul>
+<div class="container">
+    <% for(let listing of allListings) { %>
+    <a class="listing-view-link" href="/listings/<%= listing._id %>">
+        <div class="card" style="width: 20rem;">
+        <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>" style="height:300px">
+        <div class="card-img-overlay">abc</div>
+        <div class="card-body">
+        <p class="card-text">
+            <%=listing.title %>
+            <br>
+            &#8377;<%= listing.price.toLocaleString('en-IN') %>
+        </p>
+        </div>
+        </div>
+    </a>
+    <% } %>
+</div> 
+    

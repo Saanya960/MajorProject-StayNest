@@ -32,3 +32,29 @@ footer {
 .fa-brands:hover {
     color:#808080;
 }
+
+.container {
+    display:grid;
+    grid-template-rows:400px 400px 400px;
+    row-gap:1px;
+    grid-template-columns:1fr 1fr 1fr;
+    column-gap:1px;
+}
+
+.card {
+    border:none !important;
+}
+
+ .listing-view-link {
+    text-decoration: none;
+    color:#e1341e;
+}
+
+.card-img-overlay {
+    display:none; 
+ } 
+
+.card-img-overlay:hover {
+    background-color: white;
+    opacity:0.2;
+}
