@@ -1,0 +1,34 @@
+.navbar {
+    height:5rem;
+}
+
+.nav-link {
+    color:#222222 !important;
+}
+footer {
+    text-align : center;
+}
+.sticky-bottom {
+    position:fixed;
+}
+
+.f-info {
+    background-color:#ebebeb;
+    height:6rem;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.f-info-socials {
+    width:100%;
+    font-size:1.1rem;
+}
+
+.fa-brands {
+    color:#222222;
+}
+
+.fa-brands:hover {
+    color:#808080;
+}

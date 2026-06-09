@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StayNest:Create New Listing</title>
-</head>
-<body>
-    <form method="POST" action="/listings">
-        Title:<input type="text" name="listing[title]" placeholder="Write title here.."> <br>
-        Description:<textarea name="listing[description]" placeholder="Write about your place here..."></textarea> <br>
-        Image:<input type="text" name="listing[image][url]" placeholder="Enter image URL/link"> <br>
-        Price:<input type="number" name="listing[price]" placeholder="Enter your price."> <br>
-        Location:<input type="text" name="listing[location]"> <br>
-        Country:<input type="text" name="listing[country]"> <br>
-        <button>Add</button>
-    </form>
-</body>
-</html>
+<% layout('layouts/boilerplate.ejs') -%>
+<h2>StayNest</h2>
+
+<form method="POST" action="/listings">
+    Title:<input type="text" name="listing[title]" placeholder="Write title here.."> <br>
+    Description:<textarea name="listing[description]" placeholder="Write about your place here..."></textarea> <br>
+    Image:<input type="text" name="listing[image][url]" placeholder="Enter image URL/link"> <br>
+    Price:<input type="number" name="listing[price]" placeholder="Enter your price."> <br>
+    Location:<input type="text" name="listing[location]"> <br>
+    Country:<input type="text" name="listing[country]"> <br>
+    <button>Add</button>
+</form>
