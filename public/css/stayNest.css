@@ -51,10 +51,27 @@ footer {
 }
 
 .card-img-overlay {
-    display:none; 
+    color:transparent; 
  } 
 
 .card-img-overlay:hover {
     background-color: white;
     opacity:0.2;
+}
+
+.btn-primary {
+    background-color: #e1341e !important;
+    border:none !important;
+}
+
+.btn-primary:hover {
+    opacity:0.8 !important;
+}
+
+.nav-link {
+    color:#222222!important;
+}
+
+.nav-link:hover {
+    color:#1ecbe1 !important;
 }
