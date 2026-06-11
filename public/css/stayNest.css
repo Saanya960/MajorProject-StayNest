@@ -85,3 +85,18 @@ footer {
 .nav-link:hover {
     color:#1ecbe1 !important;
 }
+
+.show-img-style {
+    /* width:fit-content !important; */
+    height:40vh;
+}
+
+.edit-link-style {
+    text-decoration: none;
+    color:#222222;
+    font-weight: 500;
+}
+
+.edit-link-style:hover {
+    color:#1ecbe1;
+}
