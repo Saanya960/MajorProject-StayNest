@@ -5,15 +5,16 @@
     <div class="col-8 offset-2">
     <h3 style="color:#1ecbe1">Create a New Listing</h3>
 
-    <form method="POST" action="/listings">
+    <form class="row g-3 needs-validation" novalidate method="POST" action="/listings">
         <div class="mb-3">
             <label class="form-label" for="title">Title:</label>
-            <input class="form-control"type="text" id="title" name="listing[title]" placeholder="Write title here..">
+            <input class="form-control" required type="text" id="title" name="listing[title]" placeholder="Write title here..">
+            <div class="invalid-feedback">'Please enter a title!</div>
         </div>
         
     <div class="mb-3">
         <label class="form-label" for="desc">Description:</label>
-        <textarea class="form-control" id="desc" name="listing[description]" placeholder="Write about your place here..."></textarea>
+        <textarea class="form-control" required id="desc" name="listing[description]" placeholder="Write about your place here..."></textarea>
     </div>
 
     <div class="mb-3">
@@ -24,20 +25,20 @@
         <div class="col-md-4">
             <div class="mb-3">
             <label for="price" class="form-label">Price:</label>
-            <input class="form-control" id="price" type="number" name="listing[price]" placeholder="Enter your price."> 
+            <input class="form-control" required id="price" type="number" name="listing[price]" placeholder="Enter your price."> 
             </div>
         </div>
         <div class="col-8">
             <div class="mb-3">
             <label class="form-label"for="locate">Location:</label>
-            <input class="form-control" id="locate" type="text" name="listing[location]" placeholder="Location.."> 
+            <input class="form-control" requiredid="locate" type="text" name="listing[location]" placeholder="Location.."> 
             </div>
         </div>
      </div>
      
      <div class="mb-3">
         <label class="form-label" for="country" >Country:</label>
-        <input class="form-control"id="country" type="text" name="listing[country]" placeholder="Country..">
+        <input class="form-control" required id="country" type="text" name="listing[country]" placeholder="Country..">
      </div>
       <br>
     <button class="btn btn-primary">Add New Listing</button>

@@ -23,12 +23,6 @@ app.use(methodOverride("_method"));
 app.engine('ejs' , ejsMate);
 app.use(express.static(path.join(__dirname,'/public')));
 
-app.locals.imageUrl = (url) => {
-    if (!url || url.trim() === "") return "/villa.jpg";
-    if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("/")) return url;
-    return `/${url}`;
-};
-
 app.listen(8080,() => {
     console.log("app is working")
 })
