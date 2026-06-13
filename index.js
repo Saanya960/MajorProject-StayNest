@@ -44,6 +44,9 @@ app.get('/listings/new' ,(req,res) => {
 });
 
 app.post('/listings', wrapAsync (async (req,res) => {
+    if(!req.body.listing) {
+        throw new ExpressError(400, "Send valid data for the listing");
+    }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect('/listings');
@@ -65,6 +68,9 @@ app.get('/listings/:id/edit' , wrapAsync(async (req,res) => {
 
 //Update Route
 app.put('/listings/:id' , wrapAsync(async (req,res) => {
+    if(!req.body.listing) {
+        throw new ExpressError(400, "Send valid data for the listing");
+    }
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { runValidators: true });
     res.redirect(`/listings/${id}`);
