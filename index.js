@@ -6,6 +6,7 @@ const Listing = require('./models/listings.js');
 const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const wrapAsync = require('./utils/wrapAsync.js');
 
 async function main() {
     await mongoose.connect("mongodb://127.0.0.1/stayNest")
@@ -43,11 +44,11 @@ app.get('/listings/new' ,(req,res) => {
     res.render('listings/new.ejs');
 })
 
-app.post('/listings', async (req,res) => {
+app.post('/listings', wrapAsync (async (req,res) => {
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect('/listings');
-})
+}));
 
 //Read Route
 app.get('/listings/:id', async (req,res) => {
@@ -64,14 +65,18 @@ app.get('/listings/:id/edit' , async (req,res) => {
 })
 
 //Update Route
-app.put('/listings/:id' , async (req,res) => {
+app.put('/listings/:id' , wrapAsync(async (req,res) => {
     let {id} = req.params;
-    await Listing.findByIdAndUpdate(id , {...req.body.listing})
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { runValidators: true });
     res.redirect(`/listings/${id}`);
-})
+}));
 
 app.delete('/listings/:id' , async (req,res) => {
     let {id} = req.params;
    await Listing.findByIdAndDelete(id);
    res.redirect('/listings');
 })
+
+app.use((err,req,res,next) => {
+    res.send(err.message);
+});

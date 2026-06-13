@@ -22,7 +22,9 @@ const listingSchema = new Schema({
         default: DEFAULT_IMAGE_URL,
         set : normalizeImageUrl},
     },
-    price:Number,
+    price:{
+    type : Number,
+    min : 500 },
     location:String,
     country:String,
 });

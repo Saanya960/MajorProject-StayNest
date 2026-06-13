@@ -15,23 +15,27 @@
     <div class="mb-3">
         <label class="form-label" for="desc">Description:</label>
         <textarea class="form-control" required id="desc" name="listing[description]" placeholder="Write about your place here..."></textarea>
+        <div class="invalid-feedback">'Please write description'</div>
     </div>
 
     <div class="mb-3">
         <label for="img" class="form-label">Image:</label>
         <input id="img" type="text" class="form-control" name="listing[image][url]" placeholder="Enter image URL/link"> 
+        <div class="invalid-feedback">'Please write image URL/link'</div>
      </div>
      <div class="row">
         <div class="col-md-4">
             <div class="mb-3">
             <label for="price" class="form-label">Price:</label>
             <input class="form-control" required id="price" type="number" name="listing[price]" placeholder="Enter your price."> 
+            <div class="invalid-feedback">'Please enter price.'</div>
             </div>
         </div>
         <div class="col-8">
             <div class="mb-3">
             <label class="form-label"for="locate">Location:</label>
-            <input class="form-control" requiredid="locate" type="text" name="listing[location]" placeholder="Location.."> 
+            <input class="form-control" required id="locate" type="text" name="listing[location]" placeholder="Location.."> 
+            <div class="invalid-feedback">'Please enter location'</div>
             </div>
         </div>
      </div>
@@ -39,6 +43,7 @@
      <div class="mb-3">
         <label class="form-label" for="country" >Country:</label>
         <input class="form-control" required id="country" type="text" name="listing[country]" placeholder="Country..">
+        <div class="invalid-feedback">'Please enter country'</div>
      </div>
       <br>
     <button class="btn btn-primary">Add New Listing</button>
