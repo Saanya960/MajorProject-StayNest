@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const Schema=mongoose.Schema;
+const {Schema}=mongoose;
 
 const DEFAULT_IMAGE_URL = "/villa.jpg";
 
@@ -15,6 +15,10 @@ const listingSchema = new Schema({
         type:String,
         required:true,
     },
+    reviews: [{
+        type : Schema.Types.ObjectId,
+        ref : 'Review'
+    }],
     description:String,
     image:{
         filename:{ type : String},

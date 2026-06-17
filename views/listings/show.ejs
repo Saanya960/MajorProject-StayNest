@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-8 offset-2">
 
-    <h3>Listing Details :</h3>
+    <h3><%=listing.title%> :</h3>
     </div>
     <div class="col-6 offset-2">
     <div class="card">
@@ -24,6 +24,20 @@
     <br> <br>
     <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" >
         <button class="btn btn-primary">Delete this Listing</button>
+    </form>
+</div>
+<div class="col-6 offset-2">
+    <h4>Leave your Reviews</h4>
+    <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-3 mt-3">
+        <div class="mb-3 mt-3">
+            <label class="form-label" for="rating">Ratings⭐</label>
+            <input type="range" class="form-range" min="1" max="6" id="rating" name="review[rating]">
+        </div>
+        <div class="mb-3 mt-3">
+            <label class="form-label"  class="form-control" for="comment">Comments</label>
+            <textarea name="review[comment]" id="comment" class="form-control" ></textarea>
+        </div>
+        <button class="btn btn-primary">Post</button>
     </form>
 </div>
 </div>
