@@ -13,7 +13,6 @@ const { listingSchema } = require('./schema.js');
 
 const listings = require('./router/listings.js');
 
-
 async function main() {
     await mongoose.connect("mongodb://127.0.0.1/stayNest")
 }
@@ -30,6 +29,8 @@ app.use(methodOverride("_method"));
 app.engine('ejs' , ejsMate);
 app.use(express.static(path.join(__dirname,'/public')));
 
+app.use('/listings',listings);
+
 const listingValidate = (req,res,next) => {
 let result = listingSchema.validate(req.body);
     if(result.error) {
@@ -43,7 +44,7 @@ app.get("/",(req,res) => {
     res.send('hi');
 })
 
-app.use('/listings',listings);
+
 //reviews
 app.post('/listings/:id/reviews' ,wrapAsync(async (req,res) => {
     let listing =await Listing.findById(req.params.id);
