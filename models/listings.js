@@ -24,7 +24,7 @@ const listingSchema = new Schema({
     },
     price:{
     type : Number,
-    min : 500 },
+    min : 0 },
     location:String,
     country:String,
 });

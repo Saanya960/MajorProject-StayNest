@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const wrapAsync = require('./utils/wrapAsync.js');
 const ExpressError = require('./utils/ExpressError.js');
+const { listingSchema } = require('./schema.js');
 
 async function main() {
     await mongoose.connect("mongodb://127.0.0.1/stayNest")
@@ -24,8 +25,14 @@ app.use(express.urlencoded({extended : true}));
 app.use(methodOverride("_method"));
 app.engine('ejs' , ejsMate);
 app.use(express.static(path.join(__dirname,'/public')));
-
-
+const listingValidate = (req,res,next) => {
+let result = listingSchema.validate(req.body);
+    if(result.error) {
+        let errMsg = result.error.details.map((el) => el.message.join(','));
+        throw new ExpressError(400,errMsg);
+    } else {
+        next();
+    }};
 
 
 app.get("/",(req,res) => {
@@ -43,31 +50,36 @@ app.get('/listings/new' ,(req,res) => {
     res.render('listings/new.ejs');
 });
 
-app.post('/listings', wrapAsync (async (req,res) => {
-    if(!req.body.listing) {
-        throw new ExpressError(400, "Send valid data for the listing");
-    }
+app.post('/listings',
+    listingValidate,
+    wrapAsync (async (req,res) => {
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect('/listings');
 }));
 
 //Read Route
-app.get('/listings/:id', wrapAsync(async (req,res) => {
+app.get('/listings/:id', 
+    listingValidate,
+    wrapAsync(async (req,res) => {
     let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render('listings/show.ejs',{listing});
 }) );
 
 //Edit Route
-app.get('/listings/:id/edit' , wrapAsync(async (req,res) => {
+app.get('/listings/:id/edit' , 
+    listingValidate,
+    wrapAsync(async (req,res) => {
     let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render('listings/edit.ejs' , {listing});
 }) );
 
 //Update Route
-app.put('/listings/:id' , wrapAsync(async (req,res) => {
+app.put('/listings/:id' , 
+    listingValidate,
+    wrapAsync(async (req,res) => {
     if(!req.body.listing) {
         throw new ExpressError(400, "Send valid data for the listing");
     }
@@ -76,7 +88,9 @@ app.put('/listings/:id' , wrapAsync(async (req,res) => {
     res.redirect(`/listings/${id}`);
 }));
 
-app.delete('/listings/:id' , wrapAsync(async (req,res) => {
+app.delete('/listings/:id' ,
+    listingValidate, 
+    wrapAsync(async (req,res) => {
     let {id} = req.params;
    await Listing.findByIdAndDelete(id);
    res.redirect('/listings');
@@ -90,7 +104,8 @@ app.use((req,res,next) => {
 
 app.use((err, req, res, next) => {
     let {status = 500, message = 'Error'} = err;
-    res.render('error',{err});
+    res.status(status).render('error',{err});
+    console.log(err.message);
 });
 
 app.listen(8080,() => {
