@@ -41,7 +41,15 @@
         <button class="btn btn-primary">Post</button>
     </form>
     <br>
-    <h3>See Reviews 👇</h3>
-    <p><%= listing.reviews %></p>
+    <h4>See Reviews 👇</h4>
+    <% for (let review of listing.reviews) { %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Sam Malhotra</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"><%= review.rating %>/5</h6>
+                <p class="card-text"><%= review.comment %></p>
+            </div>
+        </div>
+    <% } %>
 </div>
 </div>
