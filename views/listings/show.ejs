@@ -42,15 +42,19 @@
     </form>
     <br>
     <h4>See Reviews 👇</h4>
-    <% for (let review of listing.reviews) { %>
-        <div class="card mb-3">
+    <div class="review-container">
+     <% for (let review of listing.reviews) { %>
+        <div class="card ms-3 mb-3" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Sam Malhotra</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary"><%= review.rating %>/5</h6>
                 <p class="card-text"><%= review.comment %></p>
             </div>
-            <form class="btn btn-primary" action="">Delete</form>
+            <form class="btn btn-primary"  style="width: 6rem;" action="">Delete</form>
+            <br>
         </div>
     <% } %>
+    <br>
+    </div>
 </div>
 </div>
