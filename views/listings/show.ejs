@@ -31,7 +31,7 @@
     <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-3 mt-3 needs-validation" novalidate>
         <div class="mb-3 mt-3">
             <label class="form-label" for="rating">Ratings⭐</label>
-            <input type="range" class="form-range" min="1" max="6" id="rating" name="review[rating]">
+            <input type="range" class="form-range" min="1" max="5" id="rating" name="review[rating]">
         </div>
         <div class="mb-3 mt-3">
             <label class="form-label"  class="form-control" for="comment">Comments</label>
@@ -40,5 +40,8 @@
         </div>
         <button class="btn btn-primary">Post</button>
     </form>
+    <br>
+    <h3>See Reviews 👇</h3>
+    <p><%= listing.reviews %></p>
 </div>
 </div>
