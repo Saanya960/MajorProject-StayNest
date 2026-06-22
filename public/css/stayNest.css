@@ -33,13 +33,13 @@ footer {
     color:#808080;
 }
 
-/* .container {
+.container {
     display:grid;
     grid-template-rows:400px 400px 400px;
     row-gap:1px;
     grid-template-columns:1fr 1fr 1fr;
     column-gap:1px;
-} */
+}
 
 @media (min-width: 430px) and (max-width:1202px) {
     .listings-container {

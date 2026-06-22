@@ -26,7 +26,7 @@
         <button class="btn btn-primary">Delete this Listing</button>
     </form>
 </div>
-<div class="col-6 offset-2">
+<div class="col-8 offset-2">
     <h4>Leave your Reviews</h4>
     <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-3 mt-3 needs-validation" novalidate>
         <div class="mb-3 mt-3">
@@ -50,7 +50,9 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary"><%= review.rating %>/5</h6>
                 <p class="card-text"><%= review.comment %></p>
             </div>
-            <form class="btn btn-primary"  style="width: 6rem;" action="">Delete</form>
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"> 
+                <button class="btn btn-primary ms-2" style="width: 6rem;">Delete</button>
+            </form>
             <br>
         </div>
     <% } %>
