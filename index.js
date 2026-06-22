@@ -105,9 +105,9 @@ app.delete('/listings/:id' ,wrapAsync(async (req,res) =>
 
 
 
-// app.use((req,res,next) => {
-//     return next(new ExpressError(404, "Page not found"));
-// } );
+app.use((req,res,next) => {
+    return next(new ExpressError(404, "Page not found"));
+} );
 
 app.use((err, req, res, next) => {
     let {status = 500, message = 'Error'} = err;

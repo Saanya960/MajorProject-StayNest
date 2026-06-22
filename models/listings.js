@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-
+const Review = require('./review.js')
 const {Schema}=mongoose;
 
 const DEFAULT_IMAGE_URL = "/villa.jpg";
@@ -32,6 +32,12 @@ const listingSchema = new Schema({
     location:String,
     country:String,
 });
+
+    listingSchema.post('findOneAndDelete', async (listingData) => {
+    if(listingData.reviews.length) {
+        await Review.deleteMany({ _id : {$in : listingData.reviews}})
+    }
+})
 
 const Listing = mongoose.model('Listing' , listingSchema);
 
