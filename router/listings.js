@@ -40,4 +40,32 @@ router.get('/:id',wrapAsync(async (req,res) =>
     res.render('listings/show.ejs',{listing});
 }) );
 
+//Edit Route
+router.get('/:id/edit' ,wrapAsync(async (req,res) => {
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    res.render('listings/edit.ejs' , {listing});
+}) );
+
+//Update Route
+router.put('/:id' , 
+    listingValidate,
+    wrapAsync(async (req,res) => {
+    if(!req.body.listing) {
+        throw new ExpressError(400, "Send valid data for the listing");
+    }
+    let {id} = req.params;
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { runValidators: true });
+    res.redirect(`/listings/${id}`);
+}));
+
+//Delete Route
+router.delete('/:id' ,wrapAsync(async (req,res) => 
+{
+    let {id} = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect('/listings');
+}) );
+
+
 module.exports = router;
