@@ -6,6 +6,8 @@ const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError.js');
+const session = require('express-session');
+const Listing = require('./models/listing.js');
 
 const listings = require('./router/listings.js');
 const reviews = require('./router/reviews.js');
@@ -29,6 +31,13 @@ app.use(express.static(path.join(__dirname,'/public')));
 app.use('/listings',listings);
 app.use('/listings/:id/reviews' , reviews);
 
+const sessionOptions = {
+    secret : 'secretcode',
+    resave : false,
+    saveuninitialized : true
+}
+
+app.use(session(sessionOptions));
 app.get("/",(req,res) => {
     res.send('hi');
 })
@@ -46,3 +55,6 @@ app.use((err, req, res, next) => {
 app.listen(8080,() => {
     console.log("app is working")
 })
+
+
+
