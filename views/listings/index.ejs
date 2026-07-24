@@ -1,10 +1,17 @@
 <% layout('layouts/boilerplate.ejs') -%>
+<% if (success && success.length > 0) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
 <h3>All Listings:</h3>
 <div class="container">
     <% for(let listing of allListings) { %>
     <a class="listing-view-link" href="/listings/<%= listing._id %>">
         <div class="card listing-border" style="width: 20rem;">
-        <img src="<%= listing.image%>" class="card-img-top" alt="<%= listing.title %>" style="height:300px">
+        <img src="<%= listing.image.url%>" class="card-img-top" alt="<%= listing.title %>" style="height:300px">
         <div class="card-img-overlay">abc</div>
         <div class="card-body">
         <p class="card-text">

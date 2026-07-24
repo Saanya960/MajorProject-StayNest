@@ -11,9 +11,11 @@ const listingSchema = new Schema({
         required: true,
     },
     image: {
-        type:String,
-        default: 'villa.jpg',
-        set: (v) => v === '' ? 'villa.jpg' : v         
+        url: {
+            type: String,
+            default: 'villa.jpg',
+            set: (v) => v === '' ? 'villa.jpg' : v,
+        },
     },
     price: {
         type:Number,
@@ -27,6 +29,12 @@ const listingSchema = new Schema({
         type:String,
         required: true,
     },
+    reviews: [
+        {
+            type:Schema.Types.ObjectId,
+            ref: "Review",
+        }
+    ]
 });
 
 const Listing = mongoose.model('Listing', listingSchema);

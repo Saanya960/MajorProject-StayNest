@@ -20,7 +20,7 @@ router.post('/' ,
     reviewValidate,
     wrapAsync(async (req,res) => {
     let listing =await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review)
+    let newReview = new Review(req.body.review);
     
     listing.reviews.push(newReview);
 
