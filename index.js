@@ -11,6 +11,11 @@ const Listing = require('./models/listing.js');
 const flash = require('connect-flash');
 const listings = require('./router/listings.js');
 const reviews = require('./router/reviews.js');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user.js');
+const users = require('./router/user.js');
+
 
 async function main() {
     await mongoose.connect("mongodb://127.0.0.1/stayNest")
@@ -40,14 +45,34 @@ app.get("/",(req,res) => {
 
 app.use(session(sessionOptions));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 app.use((req,res,next) => {
     res.locals.success = req.flash('success');
     next();
+});
+
+app.get('/demoUser', async (req,res) => {
+    const fakeUser = new User({
+        email:'raj@gmail.com',
+        username:'rajmishra',
+    });
+    //static function by passport
+    let newUser = await User.register(fakeUser,'hello123');
+    res.send(newUser);
 })
+
 
 app.use('/listings',listings);
 app.use('/listings/:id/reviews' , reviews);
+app.use('/', users);
 
 app.use((req,res,next) => {
     return next(new ExpressError(404, "Page not found"));
@@ -58,6 +83,7 @@ app.use((err, req, res, next) => {
     res.status(status).render('error',{err});
     console.log(err.message);
 });
+
 
 app.listen(8080,() => {
     console.log("app is working")
