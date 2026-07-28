@@ -1,5 +1,6 @@
 const express=require("express");
 const router = express.Router();
+const passport = require('passport');
 const wrapAsync = require('../utils/wrapAsync.js');
 const User = require('../models/user.js');
 
@@ -17,10 +18,27 @@ router.post('/signup', wrapAsync( async (req,res) => {
         req.flash('success','Welcome to StayNest!');
         res.redirect('/listings');
         } catch(e) {
-            req.flash('You have signed up already!');
+            req.flash('error',e.message);
             res.redirect('/signup');
     }
 }));
 
+router.get('/login', (req,res) => {
+    res.render('listings/login');
+});
 
+router.post('/login',passport.authenticate('local', { failureRedirect: '/login', failureFlash: true, }), async(req,res) => {
+    req.flash('success','Welcome again!');
+    res.redirect('/listings');
+})
+
+router.post('/logout', (req,res,next) => {
+    req.logout((err) => {
+        if(err) {
+            return next(err);
+        };
+        req.flash('success','You have logged out!');
+        res.redirect('/login');
+    });
+});
 module.exports = router;
