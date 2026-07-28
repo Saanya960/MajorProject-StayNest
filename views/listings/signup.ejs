@@ -4,7 +4,7 @@
     <div class="col-6 offset-3">
     <h3 style="color:#1ecbe1">Sign Up</h3>
 
-    <form class="row g-3 needs-validation" novalidate action="/signup" method="GET">
+    <form class="row g-3 needs-validation" novalidate action="/signup" method="POST">
         <div class="mb-3">
             <label class="form-label" for="username">Username:</label>
             <input class="form-control" required type="text" id="username" name="username" placeholder="Write username here..">
@@ -13,7 +13,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="email">Email:</label>
-            <input class="form-control" required type="text" id="email" name="email" placeholder="Write email here..">
+            <input class="form-control" required type="email" id="email" name="email" placeholder="Write email here..">
             <div class="invalid-feedback">'Please enter your email!</div>
         </div>
         <div class="mb-3">
@@ -21,7 +21,6 @@
             <input class="form-control" required type="password" id="pass" name="password" placeholder="Write a password">
             <div class="invalid-feedback">'Please enter a password!</div>
         </div>
-        <br>
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary">Sign Up</button>
     </form>
 </div>
