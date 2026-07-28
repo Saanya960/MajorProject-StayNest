@@ -109,3 +109,10 @@ footer {
     column-gap: 1px;
     flex:1;
 }
+
+.error img {
+    height:200px;
+    width:200px;
+    position:relative;
+    left:300px;
+}
