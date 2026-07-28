@@ -56,18 +56,19 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req,res,next) => {
     res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next();
 });
 
-app.get('/demoUser', async (req,res) => {
-    const fakeUser = new User({
-        email:'raj@gmail.com',
-        username:'rajmishra',
-    });
-    //static function by passport
-    let newUser = await User.register(fakeUser,'hello123');
-    res.send(newUser);
-})
+// app.get('/demoUser', async (req,res) => {
+//     const fakeUser = new User({
+//         email:'raj@gmail.com',
+//         username:'rajmishra',
+//     });
+//     //static function by passport
+//     let newUser = await User.register(fakeUser,'hello123');
+//     res.send(newUser);
+// })
 
 
 app.use('/listings',listings);
@@ -81,7 +82,6 @@ app.use((req,res,next) => {
 app.use((err, req, res, next) => {
     let {status = 500, message = 'Error'} = err;
     res.status(status).render('error',{err});
-    console.log(err.message);
 });
 
 

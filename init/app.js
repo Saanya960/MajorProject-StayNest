@@ -7,7 +7,7 @@ async function main() {
     await mongoose.connect("mongodb://127.0.0.1/stayNest")
 }
 
-main().then(() => {
+main().then(() => {  
 console.log("MONGODB Connected")
 })
 .catch((err) => {console.log(err)})
