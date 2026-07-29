@@ -14,8 +14,8 @@ const listingSchema = new Schema({
     image: {
         url: {
             type: String,
-            default: 'villa.jpg',
-            set: (v) => v === '' ? 'villa.jpg' : v,
+            default: '/villa.jpg',
+            set: (v) => v === '' ? '/villa.jpg' : v,
         },
     },
     price: {
@@ -35,7 +35,13 @@ const listingSchema = new Schema({
             type:Schema.Types.ObjectId,
             ref: "Review",
         }
-    ]
+    ],
+    owner: 
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }
+    
 });
 
 listingSchema.post('findOneAndDelete', async(listing) => {

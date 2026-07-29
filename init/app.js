@@ -14,6 +14,7 @@ console.log("MONGODB Connected")
 
 const intitDB = async () => {
     await Listing.deleteMany({});
+    initData.data = initData.data.map((el) => ({...el, owner:'6a689fe63382b3886f660da0'}));
     await Listing.insertMany( initData.data);
     console.log('data was initialised');
 } 
