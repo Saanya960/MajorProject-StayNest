@@ -5,6 +5,8 @@ const ExpressError = require('../utils/ExpressError.js');
 const Listing = require('../models/listing.js');
 const passport = require('passport');
 const { isLoggedIn, isOwner ,validateListing,} = require('../middleware.js');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 // const validateOwner = (req,res,next) => {
 // const {error} = listingSchema.validate(req.body);
@@ -20,11 +22,14 @@ const { isLoggedIn, isOwner ,validateListing,} = require('../middleware.js');
 const listingController = require('../controllers/listings.js');
 
 router.route('/')
-    .get(wrapAsync(listingController.index) )
-    .post(
-    isLoggedIn,
-    validateListing,
-    wrapAsync (listingController.postListing));
+     .get(wrapAsync(listingController.index) )
+    // .post(
+    // isLoggedIn,
+    // validateListing,
+    // wrapAsync (listingController.postListing));
+    .post( upload.single('listing[image]'), (req, res) =>{
+        res.send(req.file);
+})
 
 //Create Route
 router.get('/new' ,isLoggedIn, listingController.create);
