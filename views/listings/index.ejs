@@ -1,7 +1,6 @@
 <% layout('layouts/boilerplate.ejs') -%>
 
-<h3>All Listings:</h3>
-<div class="container">
+<div class="container mb-5">
     <% for(let listing of allListings) { %>
     <a class="listing-view-link" href="/listings/<%= listing._id %>">
         <div class="card listing-border" style="width: 20rem;">

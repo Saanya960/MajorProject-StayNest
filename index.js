@@ -39,9 +39,9 @@ const sessionOptions = {
     saveUninitialized : true
 }
 
-app.get("/",(req,res) => {
-    res.send('hi');
-})
+// app.get("/",(req,res) => {
+//     res.send('hi');
+// })
 
 app.use(session(sessionOptions));
 app.use(flash());
