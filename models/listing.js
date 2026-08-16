@@ -17,6 +17,7 @@ const listingSchema = new Schema({
             default: '/villa.jpg',
             set: (v) => v === '' ? '/villa.jpg' : v,
         },
+        filename: String,
     },
     price: {
         type:Number,
