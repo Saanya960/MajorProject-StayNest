@@ -41,7 +41,11 @@ const listingSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: "User",
-        }
+        },
+    // category: {
+    //         type:String,
+    //         enum:['Trending' , 'Bedrooms' , 'Farms' , 'Amazing Pools' , 'Mountains' , 'Lakefront' , 'Cabins' , 'Amazing Views' , 'Surfing'],
+    //     },
     
 });
 
