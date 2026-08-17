@@ -1,10 +1,9 @@
 <% layout('layouts/boilerplate.ejs') -%>
 <div class="row">
     <div class="col-8 offset-2">
-
-    <h3><%=listing.title%> :</h3>
+    <p class="h3"><i><%=listing.title%> :</i></p> 
     </div>
-    <div class="col-6 offset-2">
+    <div class="col-6 offset-2 mt-3">
     <div class="card">
         <img src="<%=listing.image.url || '/villa.jpg' %>" alt="<%= listing.title %>" class="card-img-top show-img-style">
          <p class="card-text"> &nbsp; Owned By <b><i><%= listing.owner.username %></i></b> 
@@ -27,13 +26,16 @@
         </h4>
         <br> <br>
         <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" >
-            <button class="btn btn-primary">Delete this Listing</button>
+            <button class="btn btn-primary">Delete this Listing</button> <br>
         </form>
     </div>
     
 </div>
+<br>
+<!-- <div class="col-6 offset-3">
+    <iframe width="500" height="300" allow="geolocation" src="https://api.maptiler.com/maps/outdoor-v4/?key=bfBb41gaLhVWyqiIzH73#2.6/12.44565/29.77228"></iframe>
+</div> -->
 <div class="col-8 offset-2">
-    <h4>Leave your Reviews</h4>
     <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-3 mt-3 needs-validation" novalidate>
         <div class="mb-3 mt-3">
             <label class="form-label" for="rating">Ratings⭐</label>
@@ -59,12 +61,18 @@
     </form>
     <% } %>
     <br>
-    <h4>See Reviews 👇</h4>
+    <% if (listing.reviews.length === 0) { %>
+        <p>No reviews yet. Be the first to review!</p>
+    <% } %>
+    <% if (listing.reviews.length > 0) { %>
+        <h5 class="mt-2">Reviews 👇</h5>
+    <% } %>
+    
     <div class="review-container">
      <% for (let review of listing.reviews) { %>
         <div class="card ms-3 mb-3" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title"><%= review.author.username %></h5>
+                <p class="card-title"><%= review.author.username %></p>
                 <p class="starability-result" data-rating="<%= review.rating %>">
                     Rated: <%= review.rating %> stars
                 </p>
