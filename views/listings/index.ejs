@@ -1,6 +1,43 @@
 <% layout('layouts/boilerplate.ejs') -%>
+<div class="utils">
+<div id="filters">
+    <div class="filters">
+        <p>Trending<i class="fa-solid fa-fire"></i></p>
+    </div>
+    <div class="filters">
+        <p>Bedrooms<i class="fa-solid fa-bed"></i></p>
+    </div>
+    <div class="filters">
+        <p>Farms<i class="fa-solid fa-building-wheat"></i></p>
+    </div>
+    <div class="filters">
+        <p>Amazing Pools<i class="fa-solid fa-water-ladder"></i></p>
+    </div>
+    <div class="filters">
+        <p>Mountains<i class="fa-solid fa-mountain"></i></p>
+    </div>
+    <div class="filters">
+        <p>Lakefront<i class="fa-solid fa-water"></i></p>
+    </div>
+    <div class="filters">
+        <p>Cabins<i class="fa-solid fa-house-user"></i></p>
+    </div>
+    <div class="filters">
+        <p>Amazing Views<i class="fa-regular fa-images"></i></p>
+    </div>
+    <div class="filters">
+        <p>Surfing<i class="fa-solid fa-sailboat"></i></p>
+    </div>
+</div>
+<div class="tax-switch">
+    <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+        <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+    </div>
+</div>
+</div>
 
-<div class="container mb-5">
+<div class="container mt-3">
     <% for(let listing of allListings) { %>
     <a class="listing-view-link" href="/listings/<%= listing._id %>">
         <div class="card listing-border" style="width: 20rem;">
@@ -10,11 +47,29 @@
         <p class="card-text">
             <%=listing.title %>
             <br>
-            &#8377;<%= listing.price.toLocaleString('en-IN') %>
+            &#8377;<%= listing.price.toLocaleString('en-IN') %>/night&nbsp;<i class="tax">+18% tax</i>
+
         </p>
         </div>
         </div>
     </a>
     <% } %>
 </div> 
+
+<script>
+
+    let taxSwitch = document.getElementById('switchCheckDefault');
+    taxSwitch.addEventListener('click', () => {
+        let taxes = document.getElementsByClassName('tax');
+        for(taxinfo of taxes) {
+            if(taxinfo.style.display !== 'inline') {
+                taxinfo.style.display = 'inline';
+            } else {
+                taxinfo.style.display = 'none';
+            }
+        }
+    }
+    )
+
+</script>
     

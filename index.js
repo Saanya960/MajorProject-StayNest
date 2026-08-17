@@ -1,4 +1,5 @@
 const express=require("express");
+require('dotenv').config();
 const app=express();
 const mongoose=require("mongoose");
 const ejs=require("ejs");
@@ -17,8 +18,11 @@ const User = require('./models/user.js');
 const users = require('./router/users.js');
 
 
+
+const dburl = process.env.ATLASDB_URL
+
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1/stayNest")
+    await mongoose.connect(dburl);
 }
 
 main().then(() => {

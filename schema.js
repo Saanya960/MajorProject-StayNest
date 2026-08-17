@@ -11,6 +11,7 @@ module.exports.listingSchema = Joi.object({
             url: Joi.string().allow('', null),
             filename: Joi.string().allow('', null)
         }),
+        // category: Joi.string().allow('Trending' , 'Bedrooms' , 'Farms' , 'Amazing Pools' , 'Mountains' , 'Lakefront' , 'Cabins' , 'Amazing Views' , 'Surfing').required(),
     }).required(),
 });
 
